@@ -5,24 +5,23 @@ const sequelize  = require("./database/database");
 const PORT = process.env.PORT || 5000;
 
  
-const User = require("./modals/userModel");
-const Child = require("./modals/childModel");
+const User = require("./modals/parentModel");
+const Student = require("./modals/studentModel");
 const Attendance = require("./modals/attendenceModel");
 const Progress = require("./modals/progressModel");
 const Payment = require("./modals/payementModel");
 
  
-User.hasMany(Child, { foreignKey: "parentId" });
-Child.belongsTo(User, { foreignKey: "parentId" });
+ 
 
-Child.hasMany(Attendance, { foreignKey: "childId" });
-Attendance.belongsTo(Child, { foreignKey: "childId" });
+Student.hasMany(Attendance, { foreignKey: "StudentId" });
+Attendance.belongsTo(Student, { foreignKey: "StudentId" });
 
-Child.hasMany(Progress, { foreignKey: "childId" });
-Progress.belongsTo(Child, { foreignKey: "childId" });
+Student.hasMany(Progress, { foreignKey: "StudentId" });
+Progress.belongsTo(Student, { foreignKey: "StudentId" });
 
-Child.hasMany(Payment, { foreignKey: "childId" });
-Payment.belongsTo(Child, { foreignKey: "childId" });
+Student.hasMany(Payment, { foreignKey: "StudentId" });
+Payment.belongsTo(Student, { foreignKey: "StudentId" });
 
  
 (async () => {
@@ -45,4 +44,4 @@ Payment.belongsTo(Child, { foreignKey: "childId" });
   }
 })();
 
-module.exports = { sequelize, User, Child, Attendance, Progress, Payment };
+module.exports = { sequelize, User, Student, Attendance, Progress, Payment };

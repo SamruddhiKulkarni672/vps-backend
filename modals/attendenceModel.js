@@ -1,13 +1,13 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
-const Child = require("./childModel");
+const Student = require("./studentModel");
 
 const Attendance = sequelize.define("Attendance", {
   id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
-  childId: { 
+  StudentId: { 
     type: DataTypes.UUID, 
     allowNull: false, 
-    references: { model: Child, key: "id" } 
+    references: { model: Student, key: "id" } 
   },
   date: { type: DataTypes.DATEONLY, allowNull: false },
   status: { 
