@@ -1,32 +1,54 @@
- const School=  require( "../../modals/schoolModel.js")
+const School = require("../../modals/schoolModel.js");
 
- const createSchool =async(req, res)=>{
-    try {
-        const{name, location, city, state, postal_code, country,establish_year, school_id, udis_no} = req.body
-      
-        const existingSchool = await School.findOne({ where: { udis_no } });
-        if (existingSchool) {
-          return res.status(400).json({ message: "school already exists" });
-        }
+const createSchool = async (req, res) => {
+  try {
+    const {
+      name,
+      location,
+      city,
+      state,
+      postal_code,
+      country,
+      establish_year,
+      school_id,
+      udis_no,
+    } = req.body;
 
-        const createSchool = await  School.create(req.body)
-        
+    const existingSchool = await School.findOne({ where: { udis_no } });
+    if (existingSchool) {
+      return res.status(400).json({ message: "school already exists" });
+    }
 
-        return res.status(201).json({
-            message: "school created successfully",
-            school:  createSchool,
-          });
+    const createSchool = await School.create(req.body);
 
+    return res.status(201).json({
+      message: "school created successfully",
+      school: createSchool,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "error creating school" });
+  }
+};
 
+const getSchool = async (req, res) => {
+  udis_no = req.params.sid;
+  try {
+    const existingSchool = await School.findOne({ where: { udis_no } });
+    if (!existingSchool) {
+      return res.status(400).json({ message: "school not found" });
+    }
 
-    }  catch (error) {
-         console.error(error);
-        return res.status(500).json({ message: "error creating school" });
-      }
- }
+    const school = await School.findOne(udis_no);
 
+    return res.status(200).json({
+      message: "school found successfully",
+      school: school,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "error getting school" });
+  }
+};
 
-
-
-
- module.exports = createSchool;
+module.exports = { createSchool, getSchool };

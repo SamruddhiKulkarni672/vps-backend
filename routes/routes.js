@@ -1,14 +1,13 @@
 const express = require("express");
-const createSchool= require("../controllers/school/school")
-
+const { createSchool, getSchool } = require("../controllers/school/school.js");
 
 const router = express.Router();
 
 // ! school routes
 
-router.post("/createschool", createSchool );
+router.post("/createschool", createSchool);
 // router.get("/getallschools");
-// router.get("/school/:sid");
+router.get("/school/:sid", getSchool);
 // router.delete("/school/:sid");
 // router.put("/school/:sid");
 

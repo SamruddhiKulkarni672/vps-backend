@@ -16,7 +16,7 @@ const School = require("./modals/schoolModel");
     await sequelize.authenticate();
     console.log("Connected to the database successfully.");
 
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
 
     const tables = await sequelize.getQueryInterface().showAllTables();
     console.log("Tables in DB:", tables);
