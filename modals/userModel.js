@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
 
-const User = sequelize.define('User', {
+const User = sequelize.define("User", {
   mobileNumber: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -9,18 +9,25 @@ const User = sequelize.define('User', {
   },
 
   role: {
-    type: DataTypes.ENUM(" parent", "admin", "teacher", "school","superAdmin","student"),
+    type: DataTypes.ENUM(
+      "parent",
+      "admin",
+      "teacher",
+      "school",
+      "superAdmin",
+      "student"
+    ),
     defaultValue: "parent",
-    allowNull: false
+    allowNull: false,
   },
 
   otp: {
     type: DataTypes.STRING,
-    allowNull: true, 
+    allowNull: true,
   },
 
   otpCreatedAt: {
-    type: DataTypes.DATE, 
+    type: DataTypes.DATE,
     allowNull: true,
   },
 
@@ -28,7 +35,6 @@ const User = sequelize.define('User', {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
-  
 });
 
 module.exports = User;

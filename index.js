@@ -10,24 +10,33 @@ const Attendance = require("./modals/attendenceModel");
 const Progress = require("./modals/progressModel");
 const Payment = require("./modals/paymentModel");
 const User = require("./modals/userModel");
-
+const School = require("./modals/schoolModel");
 (async () => {
-    try {
-        await sequelize.authenticate();
-        console.log("Connected to the database successfully.");
+  try {
+    await sequelize.authenticate();
+    console.log("Connected to the database successfully.");
 
-        await sequelize.sync({ alter: true });
+    await sequelize.sync();
 
-        const tables = await sequelize.getQueryInterface().showAllTables();
-        console.log("Tables in DB:", tables);
+    const tables = await sequelize.getQueryInterface().showAllTables();
+    console.log("Tables in DB:", tables);
 
-        app.listen(PORT, () => {
-            console.log(`Example app listening on port ${PORT}`);
-        });
-    } catch (error) {
-        console.error("Error", error);
-        console.error("Unable to start the server:", error);
-    }
+    app.listen(PORT, () => {
+      console.log(`Example app listening on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Error", error);
+    console.error("Unable to start the server:", error);
+  }
 })();
 
-module.exports = { sequelize, Parent, Student, Attendance, Progress, Payment, User };
+module.exports = {
+  sequelize,
+  Parent,
+  Student,
+  Attendance,
+  Progress,
+  Payment,
+  User,
+  School,
+};
