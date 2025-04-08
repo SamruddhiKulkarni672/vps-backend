@@ -16,4 +16,7 @@ const Attendance = sequelize.define("Attendance", {
   },
 });
 
+Student.hasMany(Attendance, { foreignKey: "StudentId" });
+Attendance.belongsTo(Student, { foreignKey: "StudentId" });
+
 module.exports = Attendance;

@@ -14,4 +14,7 @@ const Progress = sequelize.define("Progress", {
     remarks: { type: DataTypes.TEXT },
 });
 
+Student.hasMany(Progress, { foreignKey: "StudentId" });
+Progress.belongsTo(Student, { foreignKey: "StudentId" });
+
 module.exports = Progress;

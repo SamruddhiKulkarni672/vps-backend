@@ -23,15 +23,7 @@ const Parent = sequelize.define("Parent", {
         allowNull: false,
     },
 
-    otp: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-
-    otpCreatedAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-    },
+   
 });
 
 module.exports = Parent;

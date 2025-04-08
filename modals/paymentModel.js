@@ -17,4 +17,6 @@ const Payment = sequelize.define("Payment", {
   dueDate: { type: DataTypes.DATEONLY },
 });
 
+Student.hasMany(Payment, { foreignKey: "StudentId" });
+Payment.belongsTo(Student, { foreignKey: "StudentId" });
 module.exports = Payment;
