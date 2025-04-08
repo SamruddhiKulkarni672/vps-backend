@@ -73,4 +73,25 @@ const getAllSchools = async (req, res) => {
   }
 };
 
-module.exports = { createSchool, getSchool, getAllSchools };
+// http://localhost:5000/school/school/123
+const deleteSchool = async (req, res) => {
+  const udis_no = req.params.sid;
+
+  try {
+    const existingSchool = await School.findOne({ where: { udis_no } });
+    if (!existingSchool) {
+      return res.status(404).json({ message: "School not found" });
+    }
+
+    await School.destroy({ where: { udis_no } });
+
+    return res.status(200).json({
+      message: "School deleted successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Error while deleting school" });
+  }
+};
+
+module.exports = { createSchool, getSchool, getAllSchools, deleteSchool };

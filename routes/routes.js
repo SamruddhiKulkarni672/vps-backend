@@ -3,6 +3,7 @@ const {
   createSchool,
   getSchool,
   getAllSchools,
+  deleteSchool,
 } = require("../controllers/school/school.js");
 
 const router = express.Router();
@@ -12,7 +13,7 @@ const router = express.Router();
 router.post("/createschool", createSchool);
 router.get("/getallschools", getAllSchools);
 router.get("/school/:sid", getSchool);
-// router.delete("/school/:sid");
+router.delete("/school/:sid", deleteSchool);
 // router.put("/school/:sid");
 
 // ! Admin routes
