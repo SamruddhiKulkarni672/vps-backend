@@ -9,14 +9,7 @@ const User = sequelize.define("User", {
   },
 
   role: {
-    type: DataTypes.ENUM(
-      "parent",
-      "admin",
-      "teacher",
-      "school",
-      "superAdmin",
-      "student"
-    ),
+    type: DataTypes.ENUM("parent", "admin", "teacher", "school","superAdmin","student"),
     defaultValue: "parent",
     allowNull: false,
   },
@@ -31,10 +24,8 @@ const User = sequelize.define("User", {
     allowNull: true,
   },
 
-  active: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-  },
+   
+  
 });
 
 module.exports = User;
