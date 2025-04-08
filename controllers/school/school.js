@@ -51,5 +51,23 @@ const getSchool = async (req, res) => {
     return res.status(500).json({ message: "error getting school" });
   }
 };
+const getAllSchools = async (req, res) => {
+  try {
+    const existingSchool = await School.findAll();
+    if (!existingSchool) {
+      return res.status(400).json({ message: "school not found" });
+    }
+
+    const school = await School.findOne(udis_no);
+
+    return res.status(200).json({
+      message: "school found successfully",
+      school: school,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "error getting school" });
+  }
+};
 
 module.exports = { createSchool, getSchool };
