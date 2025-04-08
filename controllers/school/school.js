@@ -31,6 +31,7 @@ const createSchool = async (req, res) => {
   }
 };
 
+// http://localhost:5000/school/school/123
 const getSchool = async (req, res) => {
   udis_no = req.params.sid;
   try {
