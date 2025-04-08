@@ -1,10 +1,12 @@
 const express = require("express");
+const createSchool= require("../controllers/school/school")
+
 
 const router = express.Router();
 
 // ! school routes
 
-// router.post("/createschool");
+router.post("/createschool", createSchool );
 // router.get("/getallschools");
 // router.get("/school/:sid");
 // router.delete("/school/:sid");

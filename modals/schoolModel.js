@@ -44,12 +44,12 @@ const School = sequelize.define("School", {
     allowNull: true,
   },
   school_id: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING(),
     allowNull: false,
     unique: true,
   },
   udis_no: {
-    type: DataTypes.STRING(30),
+    type: DataTypes.STRING(),
     allowNull: false,
     unique: true,
   },
