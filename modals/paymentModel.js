@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
-const Student = require("./studentModel");
+const Student = require("./studentModel.js");
 
 const Payment = sequelize.define("Payment", {
   id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
@@ -19,4 +19,5 @@ const Payment = sequelize.define("Payment", {
 
 Student.hasMany(Payment, { foreignKey: "StudentId" });
 Payment.belongsTo(Student, { foreignKey: "StudentId" });
+
 module.exports = Payment;

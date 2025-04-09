@@ -1,7 +1,9 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
+const School= require("./schoolModel")
+const User = require("./userModel")
 
-const Admin = sequelize.define("Parent", {
+const Admin = sequelize.define("Admin", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -24,13 +26,40 @@ const Admin = sequelize.define("Parent", {
   email: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: false,
+    allowNull: true,
   },
   gender: {
     type: DataTypes.ENUM("male", "female", "other"),
-
     allowNull: false,
   },
+  userId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: User,
+      key: "id",
+    },
+    onDelete: "CASCADE",
+    onUpdate: 'CASCADE',
+  },
+
+  schoolId:{
+    type: DataTypes.STRING,
+    references:{
+      model:School,
+      key:"school_id",
+    }
+  }
+
+  
+
 });
+User.hasMany(Admin, { foreignKey: "userId" });
+Admin.belongsTo(User, { foreignKey: "userId" });
+
+
+School.hasMany(Admin, { foreignKey: "schoolId" });
+Admin.belongsTo(School, { foreignKey: "schoolId" });
+
+
 
 module.exports = Admin;

@@ -5,11 +5,12 @@ const {
   getAllSchools,
   deleteSchool,
 } = require("../controllers/school/school.js");
-
+const {signUp, signin}= require("../controllers/authContoller.js")
+const { createAdmin, getAdmins,} = require("../controllers/admin/admin.js")
 const router = express.Router();
+ 
 
-// ! school routes
-
+// router.get("/school/:sid");
 router.post("/createschool", createSchool);
 router.get("/getallschools", getAllSchools);
 router.get("/school/:sid", getSchool);
@@ -18,8 +19,8 @@ router.delete("/school/:sid", deleteSchool);
 
 // ! Admin routes
 
-// router.post("/createadmin");
-// router.get("/getalladmin");
+router.post("/createAdmin/:school_id",createAdmin);
+router.get("/getadmins", getAdmins);
 // router.get("/admin/:aid");
 // router.delete("/admin/:aid");
 // router.put("/admin/:aid");
@@ -49,13 +50,16 @@ router.delete("/school/:sid", deleteSchool);
 // router.put("/student/:sid");
 
 // ! auth routes
+router.post("/signup" ,signUp)
+router.post("/signin", signin)
 // router.post("/send-otp");
 // router.post("/verify-otp");
-// router.get("/allchildrens/:pid");
-// router.get("/children/:sid");
+ 
+
 // ! attendance routes
 // router.get("/attendance/year/:sid");
 // router.get("/attendance/month/:sid");
+
 // ! payment routes
 // router.get("/payment/all/:sid");
 // router.get("/payment/paid/:sid");

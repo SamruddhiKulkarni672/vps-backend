@@ -1,3 +1,5 @@
+ 
+ 
 const School = require("../../modals/schoolModel.js");
 
 // http://localhost:5000/school/school/createschool
@@ -20,17 +22,24 @@ const createSchool = async (req, res) => {
       return res.status(400).json({ message: "school already exists" });
     }
 
-    const createSchool = await School.create(req.body);
+        const createSchool = await  School.create(req.body)
+        
 
-    return res.status(201).json({
-      message: "school created successfully",
-      school: createSchool,
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "error creating school" });
-  }
-};
+        return res.status(201).json({
+            message: "school created successfully",
+            school:  createSchool,
+          });
+
+
+
+    }  catch (error) {
+         console.error(error);
+        return res.status(500).json({ message: "error creating school" });
+      }
+ }
+
+
+ 
 
 // http://localhost:5000/school/school/123
 const getSchool = async (req, res) => {
@@ -53,25 +62,25 @@ const getSchool = async (req, res) => {
   }
 };
 
-//http:localhost:5000/school/school/getallschools
+//http:localhost:5000/school/getallschools
 const getAllSchools = async (req, res) => {
   try {
-    const existingSchools = await School.findAll();
+    const Schools = await School.findAll();
     console.log("all schools");
-    console.log(existingSchools);
-    if (!existingSchools) {
-      return res.status(400).json({ message: "schools not found" });
-    }
+    console.log(Schools);
+    // if (!existingSchools) {
+    //   return res.status(400).json({ message: "schools not found" });
+    // }
 
     return res.status(200).json({
       message: "school found successfully",
-      school: existingSchools,
+      school: Schools,
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "error getting school" });
   }
-};
+};   
 
 // http://localhost:5000/school/school/123
 const deleteSchool = async (req, res) => {

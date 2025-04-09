@@ -35,7 +35,7 @@ const Parent = sequelize.define("Parent", {
 
    
 });
-User.hasOne(Parent, { foreignKey: "userId" });
+User.hasMany(Parent, { foreignKey: "userId" });
 Parent.belongsTo(User, { foreignKey: "userId" });
 
 module.exports = Parent;

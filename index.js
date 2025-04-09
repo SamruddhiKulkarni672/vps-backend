@@ -11,12 +11,13 @@ const Progress = require("./modals/progressModel");
 const Payment = require("./modals/paymentModel");
 const User = require("./modals/userModel");
 const School = require("./modals/schoolModel");
+const Admin= require("./modals/adminModel");
 (async () => {
   try {
     await sequelize.authenticate();
     console.log("Connected to the database successfully.");
 
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ alter: true ,  force: true});
 
     const tables = await sequelize.getQueryInterface().showAllTables();
     console.log("Tables in DB:", tables);
@@ -39,4 +40,5 @@ module.exports = {
   Payment,
   User,
   School,
+  Admin
 };
